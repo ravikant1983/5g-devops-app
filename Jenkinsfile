@@ -44,12 +44,12 @@ pipeline {
         }
         stage('Trivy Scan') {
             steps {
-                sh '''
+                sh """
                     trivy image \
                     --exit-code 0 \
                     --severity HIGH,CRITICAL \
                     ${IMAGE}:${BUILD_NUMBER}
-                '''
+                """
             }
         }
 
