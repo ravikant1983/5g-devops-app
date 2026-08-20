@@ -48,7 +48,7 @@ pipeline {
                     trivy image \
                     --exit-code 0 \
                     --severity HIGH,CRITICAL \
-                    ${IMAGE}:${TAG}
+                    ${IMAGE}:${BUILD_NUMBER}
                 '''
             }
         }
