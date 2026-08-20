@@ -1,3 +1,4 @@
 .env
 *.log
-secrets.yaml
+target/
+node_modules/
