@@ -98,46 +98,6 @@ pipeline {
                 '''
             }
         }
-
-        stage('Update GitOps') {
-
-    steps {
-
-        withCredentials([
-            usernamePassword(
-                credentialsId: 'github-gitops-write',
-                usernameVariable: 'GIT_USER',
-                passwordVariable: 'GIT_TOKEN'
-            )
-        ]) {
-
-            sh '''
-                rm -rf gitops-repo
-
-                git clone \
-                https://${GIT_USER}:${GIT_TOKEN}@github.com/ravikant1983/5g-gitops.git \
-                gitops-repo
-
-                cd gitops-repo
-
-                sed -i \
-                "s#image: .*#image: docker.io/rkg1983/5g-devops-app:${BUILD_NUMBER}#" \
-                apps/5g-devops-app/deployment.yaml
-
-                git config user.name "jenkins"
-                git config user.email "jenkins@local"
-
-                git add .
-
-                git commit \
-                -m "Update 5g-devops-app image ${BUILD_NUMBER}" \
-                || true
-
-                git push
-            '''
-        }
-    }
-}
     }
 
     post {

@@ -1,0 +1,11 @@
+dn: ou=Users,dc=example,dc=com
+objectClass: organizationalUnit
+ou: Users
+
+dn: cn=ldapdeveloper,ou=Users,dc=example,dc=com
+objectClass: inetOrgPerson
+cn: ldapdeveloper
+sn: DevOps
+uid: ldapdeveloper
+userPassword: ldappassword123
+mail: ldapdev@example.com
